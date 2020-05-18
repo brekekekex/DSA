@@ -93,18 +93,41 @@ int contains(int d, struct ARR* a){
     return (locate(d, a) != -1); 
 }
 
-    
+struct ARR* selSort(struct ARR* a){
+    for(int i = 0; i < (a->length) - 1; i++){
+        int cmin = (a->head)[i];
+        int cminpos = i;
+        for(int j = i + 1; j < a->length; j++){
+            if((a->head)[j] < cmin){
+                cminpos = j;
+            }
+        }
+        if(i == cminpos){
+            continue;
+        }
+        (a->head)[i] ^= (a->head)[cminpos];
+        (a->head)[cminpos] ^= (a->head)[i];
+        (a->head)[i] ^= (a->head)[cminpos];
+    }
+    return a;
+}
+
+
+
+
+
+
+
+
+
 int main(void){
-    int alpha[] = {1, 2, 3, 4, 5};
-    int beta[] = {1, 2, 3, 4, 6};
+    int alpha[] = {3, 2};
+    struct ARR* a = fromArray(alpha, 2);
 
-    struct ARR* a = fromArray(alpha, 5);
-    struct ARR* b = fromArray(beta, 5);
-
-    a = join(a,b);
+    printARR(a);
+    a = selSort(a);
     printARR(a);
     
-    printf("%d\n", contains(609, a));
     return 0;
 
 }
