@@ -117,7 +117,7 @@ struct ARR* insertSort(struct ARR* a){
         int current = (a->head)[i];
         int j = i - 1;
         if((a->head)[j] <= (a->head)[i]){
-            continue;
+    next:   continue;
         }
         for(; (a->head)[j] > current; j--){
             (a->head)[j+1] = (a->head)[j];
@@ -126,8 +126,7 @@ struct ARR* insertSort(struct ARR* a){
                 goto next;
             }
         }
-        (a->head)[j+1] = current;
-        next: continue;        
+        (a->head)[j+1] = current;        
     }
     return a;
 }
