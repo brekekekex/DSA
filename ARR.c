@@ -112,22 +112,35 @@ struct ARR* selSort(struct ARR* a){
     return a;
 }
 
-
-
-
-
-
-
-
+struct ARR* insertSort(struct ARR* a){
+    for(int i = 1; i < a->length; i++){                               
+        int current = (a->head)[i];
+        int j = i - 1;
+        if((a->head)[j] <= (a->head)[i]){
+            continue;
+        }
+        for(; (a->head)[j] > current; j--){
+            (a->head)[j+1] = (a->head)[j];
+            if(j == 0){
+                (a->head)[j] = current;
+                goto next;
+            }
+        }
+        (a->head)[j+1] = current;
+        next: continue;        
+    }
+    return a;
+}
 
 int main(void){
-    int alpha[] = {3, 2};
-    struct ARR* a = fromArray(alpha, 2);
+    int alpha[] = {2, 2, 2, 1, 3, 1, 4, 5, 8, 7};
+    struct ARR* a = fromArray(alpha, 10);
 
     printARR(a);
-    a = selSort(a);
-    printARR(a);
+    a = insertSort(a);
     
+    printARR(a);
+
     return 0;
 
 }
