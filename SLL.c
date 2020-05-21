@@ -246,14 +246,35 @@ struct SLLNODE* cup(struct SLLNODE* a, struct SLLNODE* b){
     return unique(join(unique(a), unique(b)));
 }
 
-int main(void){
-    int arr[] = {4, 2, 4};
-    struct SLLNODE* gamma = fromArray(arr, 3);
-    
-    int brr[] = {4, 2, 3};
-    struct SLLNODE* kappa = fromArray(brr, 3);
+struct SLLNODE* radixSort(struct SLLNODE* s){
+    struct SLLNODE* p = s;
+   
+    for(int r = 0; r < 32; r++){
+        struct SLLNODE* bin0 = newNode(0x80000000);
+        struct SLLNODE* bin1 = newNode(0x80000000);
+        
+        for(; p != NULL; p = p->next){
+            if(((p->datum)>>r)&0x01){
+                bin1 = append(p->datum, bin1);
+            } else{
+                bin0 = append(p->datum, bin0);
+            }
+        }
+        s = clone(filter(0x80000000, join(bin0, bin1)));
+        p = s;
+    }  
+    return p;
+}
 
-    printSLL(subtract(kappa, gamma));
+
+
+int main(void){
+    int arr[] = {1, 2, 4, 6, 3, 2, 7, 3};
+    struct SLLNODE* gamma = fromArray(arr, 8);
+    
+
+    gamma = radixSort(gamma);
+    printSLL(gamma);
     return 0;
 
 }

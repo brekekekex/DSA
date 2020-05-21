@@ -131,6 +131,28 @@ struct ARR* insertSort(struct ARR* a){
     return a;
 }
 
+struct ARR* radixSort(struct ARR* a){
+
+    struct ARR* bin0 = 
+    struct ARR* bin1 = 
+    for(int i = 0; i < a->length; i++){
+        (((a->head)[i])>>k)&1          
+
+
+
+
+    }
+
+
+
+
+
+}
+
+
+
+
+
 int main(void){
     int alpha[] = {2, 2, 2, 1, 3, 1, 4, 5, 8, 7};
     struct ARR* a = fromArray(alpha, 10);
