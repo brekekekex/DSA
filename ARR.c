@@ -131,36 +131,42 @@ struct ARR* insertSort(struct ARR* a){
     return a;
 }
 
-struct ARR* radixSort(struct ARR* a){
-
-    struct ARR* bin0 = 
-    struct ARR* bin1 = 
-    for(int i = 0; i < a->length; i++){
-        (((a->head)[i])>>k)&1          
-
-
-
-
+int getMax(struct ARR* a){
+    int cMax = (a->head)[0];
+    for(int i = 1; i < a->length; i++){
+        if((a->head)[i] > cMax){
+            cMax = (a->head)[i];
+        }
     }
+    return cMax;
+}
 
-
-
-
-
+struct ARR* countSort(struct ARR* a){
+    int k = getMax(a);
+    int* daa = malloc(sizeof(int)*(k+1));
+    assert(daa != NULL);
+    for(int i = 0; i < a->length; i++){
+        daa[(a->head)[i]]++;
+    }
+    int p = 0;
+    for(int i = 0; i < k + 1; i++){
+        for(; daa[i] != 0; daa[i]--, p++){
+            (a->head)[p] = i;
+        }
+    }
+    free(daa);
+    return a;
 }
 
 
-
-
-
 int main(void){
-    int alpha[] = {2, 2, 2, 1, 3, 1, 4, 5, 8, 7};
-    struct ARR* a = fromArray(alpha, 10);
+    int alpha[] = {1};
+    struct ARR* a = fromArray(alpha, 1);
 
+    a = countSort(a);
     printARR(a);
-    a = insertSort(a);
-    
-    printARR(a);
+
+
 
     return 0;
 
