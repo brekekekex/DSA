@@ -158,12 +158,22 @@ struct ARR* countSort(struct ARR* a){
     return a;
 }
 
+struct ARR* reverse(struct ARR* a){
+    int i = 0;
+    int j = (a->length) - 1;
+    for(; i < j; i++, j--){
+        (a->head)[i] ^= (a->head)[j];
+        (a->head)[j] ^= (a->head)[i];
+        (a->head)[i] ^= (a->head)[j];
+    }
+    return a;
+}
 
 int main(void){
-    int alpha[] = {1};
-    struct ARR* a = fromArray(alpha, 1);
+    int alpha[] = {1, 2, 3};
+    struct ARR* a = fromArray(alpha, 3);
 
-    a = countSort(a);
+    a = reverse(a);
     printARR(a);
 
 
