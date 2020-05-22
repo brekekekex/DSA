@@ -172,7 +172,8 @@ struct ARR* reverse(struct ARR* a){
 int binarySearch(int d, struct ARR* a){
     int l = 0;
     int r = a->length;
-    for(int m = (l+r)>>1; l < r; m = (l+r)>>1){
+    int m = (l+r)>>1;
+    for(; l < r; m = (l+r)>>1){
         if((a->head)[m] < d){
             l = m + 1;
         } else{
