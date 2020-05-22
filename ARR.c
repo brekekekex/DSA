@@ -169,14 +169,22 @@ struct ARR* reverse(struct ARR* a){
     return a;
 }
 
+int binarySearch(int d, struct ARR* a){
+    int l = 0;
+    int r = a->length;
+    for(int m = (l+r)>>1; l < r; m = (l+r)>>1){
+        if((a->head)[m] < d){
+            l = m + 1;
+        } else{
+            r = m;
+        }
+    }
+    return ((a->head)[l] == d) ? l : -1;
+}
+
 int main(void){
-    int alpha[] = {1, 2, 3};
+    int alpha[] = {1, 2, 3, 3};
     struct ARR* a = fromArray(alpha, 3);
-
-    a = reverse(a);
-    printARR(a);
-
-
 
     return 0;
 
