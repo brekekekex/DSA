@@ -24,6 +24,7 @@ struct STKNODE* newNode(int d){
     struct STKNODE* n = malloc(sizeof(struct STKNODE));
     assert(n != NULL);
     n->datum = d;
+    n->below = NULL;
     return n;
 }
 
@@ -52,19 +53,25 @@ void pop(struct STK* s){
     s->top = tmp;
 }
 
+void delStack(struct STK** s){
+    struct STKNODE* tmpa = (*s)->top;
+    struct STKNODE* tmpb; 
+    for(; tmpa != NULL;){
+        tmpb = tmpa->below; 
+        delNode(&tmpa);
+        tmpa = tmpb;
+    }
+    free(*s);
+    *s = NULL;
+}
+
 int main(void){
     struct STK* a = newStack();
     push(1, a);
     push(2, a);
     push(3, a);
     printSTK(a);
-    pop(a);
-    pop(a);
-    pop(a);
-    pop(a);
-    printSTK(a);
-
-
+    delStack(&a);
 
 
 
