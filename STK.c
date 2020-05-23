@@ -71,10 +71,4 @@ int main(void){
     push(2, a);
     push(3, a);
     printSTK(a);
-    delStack(&a);
-
-
-
-
-
 }
